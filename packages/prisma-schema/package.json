@@ -2,17 +2,20 @@
   "name": "@yc-w-cn/simple-message-prisma-schema",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
-    "prisma": "pnpm run prisma:generate",
-    "prisma:generate": "prisma generate",
-    "prisma:push": "prisma db push"
+    "build": "tsc --build ",
+    "lint": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate"
   },
   "keywords": [],
   "author": "Yuchen Wang",
   "license": "MIT",
   "devDependencies": {
-    "prisma": "^5.6.0"
+    "prisma": "^5.6.0",
+    "typescript": "^5.3.2"
   },
   "dependencies": {
     "@prisma/client": "5.6.0"
