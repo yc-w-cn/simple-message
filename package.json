@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -14,8 +16,9 @@
   "author": "Yuchen Wang",
   "license": "MIT",
   "engines": {
-    "node": ">=18.16.1"
+    "node": ">=18"
   },
+  "packageManager": "pnpm@8.9.0",
   "type": "module",
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
@@ -27,7 +30,8 @@
     "eslint-plugin-prettier": "^5.0.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.2",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "turbo": "latest"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx}": [
