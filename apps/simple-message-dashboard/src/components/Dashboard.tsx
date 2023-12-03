@@ -1,10 +1,19 @@
-import { Statistic, Flex, Card, Typography, Space } from 'antd';
+import {
+  Statistic,
+  Flex,
+  Card,
+  Typography,
+  Space,
+  Table,
+  ConfigProvider,
+} from 'antd';
 import { serviceName, socket } from '../common/socket';
 import Footer from './Footer';
 import {
   DisconnectOutlined,
   LinkOutlined,
   MessageOutlined,
+  NodeIndexOutlined,
 } from '@ant-design/icons';
 import OperationButton from './OperationButton';
 import { useEffect, useState } from 'react';
@@ -13,6 +22,8 @@ const { Title } = Typography;
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
+  const [messages, setMessages] = useState([]);
+  const [connectedIds, setConnectedIds] = useState([]);
 
   useEffect(() => {
     function onConnect() {
@@ -50,14 +61,26 @@ function App() {
             icon={<LinkOutlined />}
             onClick={() => {
               socket.connect();
-              socket.emit('connected');
             }}
           />
           <OperationButton
-            text="发送"
+            text="节点"
+            icon={<NodeIndexOutlined />}
+            onClick={() => {
+              socket.emit('list_connected_client_ids', (response: any) => {
+                console.log('list_connected_client_ids', response);
+                setConnectedIds(response);
+              });
+            }}
+          />
+          <OperationButton
+            text="消息"
             icon={<MessageOutlined />}
             onClick={() => {
-              socket.emit('hello', 'world');
+              socket.emit('list_recent_messages', (response: any) => {
+                console.log('list_recent_messages', response);
+                setMessages(response);
+              });
             }}
           />
           <OperationButton
@@ -80,7 +103,7 @@ function App() {
               <Statistic
                 title="节点"
                 className="text-white"
-                value={'0/100'}
+                value={`${connectedIds.length}`}
                 prefix
               />
             </Card>
@@ -103,17 +126,36 @@ function App() {
             className="bg-[#2b2c3d] h-[350px] mt-4"
             bordered={false}
           >
-            <Flex justify="center" align="center" className="h-[220px]">
-              <span>暂无数据</span>
-            </Flex>
-            {/* <ConfigProvider
-            theme={{
-              token: {
-              }
-            }}
-          >
-            <Table></Table>
-          </ConfigProvider> */}
+            {messages.length === 0 ? (
+              <Flex justify="center" align="center" className="h-[220px]">
+                <span>暂无数据</span>
+              </Flex>
+            ) : (
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorBgContainer: 'transparent',
+                  },
+                }}
+              >
+                <Table
+                  dataSource={messages}
+                  columns={[
+                    { title: 'Client', dataIndex: 'clientId' },
+                    {
+                      title: 'Event',
+                      dataIndex: 'eventName',
+                    },
+                    {
+                      title: 'DateTime',
+                      dataIndex: 'gmtCreatedAt',
+                    },
+                  ]}
+                  pagination={false}
+                  size="small"
+                ></Table>
+              </ConfigProvider>
+            )}
           </Card>
           <Footer />
         </div>
