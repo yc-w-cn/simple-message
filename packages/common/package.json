@@ -1,0 +1,14 @@
+{
+  "name": "@yc-w-cn/simple-message-common",
+  "private": true,
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@yc-w-cn/simple-message-tsconfig": "workspace:*",
+    "typescript": "^5.3.2"
+  }
+}
