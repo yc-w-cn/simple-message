@@ -1,0 +1,21 @@
+{
+  "name": "@yc-w-cn/simple-message-prisma-module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "Yuchen Wang",
+  "license": "MIT",
+  "dependencies": {
+    "@nestjs/common": "^10.0.0",
+    "@yc-w-cn/simple-message-prisma-schema": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.2",
+    "@yc-w-cn/simple-message-tsconfig": "workspace:*"
+  }
+}
