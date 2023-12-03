@@ -1,0 +1,20 @@
+{
+  "name": "@yc-w-cn/simple-message-html",
+  "version": "1.0.0",
+  "description": "Vanilla js client example",
+  "main": "index.js",
+  "scripts": {
+    "dev": "http-server ."
+  },
+  "keywords": [
+    "vanilla",
+    "js",
+    "html",
+    "socket"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
