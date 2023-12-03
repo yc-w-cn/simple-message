@@ -7,27 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Client {
-  id              Int       @id @default(autoincrement())
-  name            String
-  secret          String
-  role            String
-  lastConnectedAt DateTime? @default(now()) @map("last_connected_at")
-  messages        Message[]
-
-  @@map("client")
-}
-
 model Message {
   id           Int      @id @default(autoincrement())
-  traceId      String   @map("trace_id")
   clientId     Int      @map("client_id")
-  client       Client   @relation(fields: [clientId], references: [id])
-  event        String
+  eventName    String   @map("event_name")
   payload      Json
   gmtCreatedAt DateTime @default(now()) @map("gmt_created_at")
 
-  @@index([traceId])
-  @@index([event])
+  @@index([clientId])
+  @@index([eventName])
   @@map("message")
 }
