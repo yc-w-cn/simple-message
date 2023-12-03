@@ -1,6 +1,7 @@
 {
   "extends": "@yc-w-cn/simple-message-tsconfig/nest-module.json",
   "compilerOptions": {
+    "declaration": true,
     "sourceMap": true,
     "outDir": "lib",
     "strict": true,
