@@ -1,0 +1,4 @@
+[MASTER]
+
+# Disable "Missing function or method docstring" warning
+disable=missing-function-docstring
